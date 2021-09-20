@@ -1,0 +1,8 @@
+name: CU shortcodes
+description: Embed CU related shortcodes into sites
+package: CU Core
+version: 1.x
+core_version_requirement: '^8.9 || ^9'
+type: module
+dependencies:
+  - ckeditor
