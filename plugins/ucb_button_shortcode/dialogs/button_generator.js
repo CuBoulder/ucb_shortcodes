@@ -85,9 +85,7 @@ CKEDITOR.dialog.add( 'button_generatorDialog', function( editor ) {
 			let color = dialog.getValueOf( 'tab-design', 'button-color' );
 		  let size = dialog.getValueOf( 'tab-design', 'button-size' );
       let style = dialog.getValueOf( 'tab-design', 'button-style' );
-
-      // editor.insertHtml( '[button url="' + buttonURL + '"' + color + size + style + ']' + buttonText + '[/button]');
-      editor.insertHtml(`<a class="button button-${color} button-${size} button-${style}" href="${buttonURL}"> ${buttonText} </a>`);
+      editor.insertHtml(`[button class="button button-${color} button-${size} button-${style}" href="${buttonURL}"] ${buttonText} [/button]`);
     }
   };
 });
