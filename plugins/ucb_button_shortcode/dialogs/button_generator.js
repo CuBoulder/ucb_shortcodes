@@ -26,21 +26,29 @@ CKEDITOR.dialog.add( 'button_generatorDialog', function( editor ) {
             id: 'button-url',
             label: 'URL',
             validate: CKEDITOR.dialog.validate.notEmpty( "URL field cannot be empty" )
-            }
-          ]
+          },
+          {
+            type: 'radio',
+            id: 'link-type',
+            label: 'Link Type',
+            style: 'display: inline',
+            items: [ [ 'URL', 'url' ], [ 'Email', 'mailto:' ], ['Phone Number', 'tel:'] ],
+            default: 'url'
+          }
+        ]
       },
-			{
-				// Definition of the Design Settings dialog tab (page).
-				id: 'tab-design',
-				label: 'Button Design',
-				// The tab contents.
-				elements: [
-				  {
-						// Select input for button color.
-						type: 'select',
-						id: 'button-color',
-						label: 'Button Color',
-						items: [ 
+      {
+        // Definition of the Design Settings dialog tab (page).
+        id: 'tab-design',
+        label: 'Button Design',
+        // The tab contents.
+        elements: [
+          {
+            // Select input for button color.
+            type: 'select',
+            id: 'button-color',
+            label: 'Button Color',
+            items: [ 
               [ 'Blue', 'blue' ],
               [ 'Gold', 'gold' ],
               [ 'Black', 'black' ],
@@ -49,43 +57,44 @@ CKEDITOR.dialog.add( 'button_generatorDialog', function( editor ) {
               [ 'White', 'white' ] 
             ],
             default: 'blue'
-					},
-					{
-						// Select input field for the button size.
-						type: 'select',
-						id: 'button-size',
-						label: 'Button Size',
-						items: [ 
+          },
+          {
+            // Select input field for the button size.
+            type: 'select',
+            id: 'button-size',
+            label: 'Button Size',
+            items: [ 
               [ 'Regular', 'regular' ],
               [ 'Large', 'large' ],
               [ 'Small', 'small' ]
             ],
             default: 'regular'
-					},
-					{
-						// Select input field for the button size.
-						type: 'select',
-						id: 'button-style',
-						label: 'Button Style',
-						items: [ 
+          },
+          {
+            // Select input field for the button size.
+            type: 'select',
+            id: 'button-style',
+            label: 'Button Style',
+            items: [ 
               [ 'Regular', 'regular' ],
               [ 'Full', 'full' ] 
             ],
             default: 'regular'
-					}
-				]
-			},
-		],
-		onOk: function() {
-			// The context of this function is the dialog object itself.
-			// http://docs.ckeditor.com/#!/api/CKEDITOR.dialog
+          }
+        ]
+      },
+    ],
+    onOk: function() {
+      // The context of this function is the dialog object itself.
+      // http://docs.ckeditor.com/#!/api/CKEDITOR.dialog
       const dialog = this;
-			let buttonURL = dialog.getValueOf( 'tab-basic', 'button-url' );
-			let buttonText = dialog.getValueOf( 'tab-basic', 'button-text' );
-			let color = dialog.getValueOf( 'tab-design', 'button-color' );
-		  let size = dialog.getValueOf( 'tab-design', 'button-size' );
+      let buttonURL = dialog.getValueOf( 'tab-basic', 'button-url' );
+      let buttonText = dialog.getValueOf( 'tab-basic', 'button-text' );
+      let color = dialog.getValueOf( 'tab-design', 'button-color' );
+      let size = dialog.getValueOf( 'tab-design', 'button-size' );
       let style = dialog.getValueOf( 'tab-design', 'button-style' );
-      editor.insertHtml(`[button class="button button-${color} button-${size} button-${style}" href="${buttonURL}"] ${buttonText} [/button]`);
+      let prefix = (dialog.getValueOf('tab-basic', 'link-type') !== 'url') ? dialog.getValueOf('tab-basic','link-type') : '';
+      editor.insertHtml(`[button class="button button-${color} button-${size} button-${style}" href="${prefix + buttonURL}"] ${buttonText} [/button]`);
     }
   };
 });
