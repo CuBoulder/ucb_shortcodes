@@ -23,7 +23,7 @@ plugin_name
 ````
 To create a plugin, read this [Plugin example](https://ckeditor.com/docs/ckeditor4/latest/guide/plugin_sdk_sample_1.html). You don't have to add the `config.extraPlugins` part since Drupal will do that.
 
-> The icon image **MUST** match the name of the plugin.
+> The name of the icon image **MUST** match the name of the plugin.
 > <br>
 > **Example:**
 > <br>
@@ -35,6 +35,14 @@ To create a plugin, read this [Plugin example](https://ckeditor.com/docs/ckedito
 Plugins will extend the `CKEditorPluginBase` class. You can add a new plugin in the `src/Plugin/CKEditorPlugin` directory. Each file must have annotations above the class in order for Drupal to find it.
 
 You can copy an existing Plugin file to create your own. The two important methods in this class are `getFile()` and `getButtons()`. The former will tell Drupal where the actual CKEditor plugin is. The latter will add the button to the editor toolbar.
+
+> The value for the id in the class annotation MUST match the name of the CKEditor plugin name.
+> <br>
+> **Example:**
+> <br>
+> The ckeditorfa5 plugin defines a new plugin with `CKEDITOR.plugins.add('ckeditorfa5',{})`
+> <br>
+> In the IconShortcode.php annotation, the id has the value "ckeditorfa5"
 
 > In the `getButtons()` return array, the key in the associative array **MUST** match the button name in the CKEditor plugin.
 > <br>
