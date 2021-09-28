@@ -11,9 +11,7 @@
       });
       CKEDITOR.dialog.add('ckeditorFaDialog', this.path + 'dialogs/ckeditorfa.js');
       CKEDITOR.document.appendStyleSheet(this.path + 'css/ckeditorfa.css');
-      CKEDITOR.document.appendStyleSheet("/themes/custom/ucb2021_base/css/fontawesome/fontawesome.min.css");
-      CKEDITOR.document.appendStyleSheet("/themes/custom/ucb2021_base/css/fontawesome/brands.min.css");
-      CKEDITOR.document.appendStyleSheet("/themes/custom/ucb2021_base/css/fontawesome/solid.min.css");
+      CKEDITOR.document.appendStyleSheet("/themes/custom/ucb2021_base/css/fontawesome/all.min.css");
       CKEDITOR.dtd.$removeEmpty['span'] = false;
     }
   });
