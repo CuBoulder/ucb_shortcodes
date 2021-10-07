@@ -1,0 +1,8 @@
+<?php
+/**
+ * Implements hook_page_attachments().
+ */
+function ucb_shortcodes_page_attachments(array &$page) {
+  $theme_path = drupal_get_path('theme', 'ucb2021_base');
+  $page['#attached']['drupalSettings']['themePath'] = $theme_path;
+}
