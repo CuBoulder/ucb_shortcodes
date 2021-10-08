@@ -92,8 +92,31 @@ return {
 		},
 		{
 		type:'hbox',
-		widths:['100%'],
+		widths:['25%', '25%', '50%'],
 		children:[
+      {
+        type: 'select',
+        id: 'icon-pull',
+        label: 'Pull',
+        items: [ 
+          [ 'None', 'none' ],
+          [ 'Left', 'left' ],
+          [ 'Right', 'right' ],
+        ],
+        default: 'none'
+      },
+      {
+        type: 'select',
+        id: 'icon-wrapper',
+        label: 'Wrapper',
+        items: [ 
+          [ 'None', 'none'],
+          [ 'Circle', 'icon-wrapper-circle' ],
+          [ 'Square', 'icon-wrapper-square' ],
+          [ 'Rounded Rectange', 'icon-wrapper-rounded' ],
+        ],
+        default: 'none'
+      },
 		  {
 		    type:'text',
 				id:'faicon',
@@ -141,8 +164,16 @@ return {
 		const color = dialog.getValueOf('font-awesome','icon-color');
 		const size = dialog.getValueOf('font-awesome','icon-size');
 		const icon = dialog.getValueOf('font-awesome', 'faicon');
+    let pull = '';
+    let wrapper = '';
+    if( dialog.getValueOf('font-awesome', 'icon-pull') !== 'none'){
+      pull = `pull="${dialog.getValueOf('font-awesome', 'icon-pull')}"`;
+    }
+    if( dialog.getValueOf('font-awesome', 'icon-wrapper') !== 'none'){
+      wrapper = `wrapper="${dialog.getValueOf('font-awesome', 'icon-wrapper')}"`;
+    }
     // The order of attributes must stay this way or the filter won't process it correctly
-		editor.insertHtml(`[icon shape="${icon}" size="${size}" pull="" color="${color}" wrapper="" /]`);
+		editor.insertHtml(`[icon shape="${icon}" size="${size}" ${pull} color="${color}" ${wrapper} /]`);
 	},
 	onCancel:function () {
 		clear();
