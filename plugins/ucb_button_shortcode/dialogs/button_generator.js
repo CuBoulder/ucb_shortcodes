@@ -94,7 +94,8 @@ CKEDITOR.dialog.add( 'button_generatorDialog', function( editor ) {
       let size = dialog.getValueOf( 'tab-design', 'button-size' );
       let style = dialog.getValueOf( 'tab-design', 'button-style' );
       let prefix = (dialog.getValueOf('tab-basic', 'link-type') !== 'url') ? dialog.getValueOf('tab-basic','link-type') : '';
-      editor.insertHtml(`[button class="button button-${color} button-${size} button-${style}" href="${prefix + buttonURL}"] ${buttonText} [/button]`);
+      // If the order of the attributes change, the filter must also be changed!
+      editor.insertHtml(`[button url="${prefix + buttonURL}" color="${color}" size="${size}" style="${style}"] ${buttonText} [/button]`);
     }
   };
 });

@@ -79,11 +79,11 @@ return {
 			id: 'icon-size',
 			label: 'Icon Size',
 			items: [ 
-				[ 'Regular', '2x' ],
-				[ 'Large', '3x' ],
-				[ 'Small', '1x' ]
+				[ 'Regular', 'fa-2x' ],
+				[ 'Large', 'fa-3x' ],
+				[ 'Small', 'fa-1x' ]
 			],
-			default: '2x'
+			default: 'fa-2x'
 		},
 		{
 			type:'text',id:'faSearch',className:'faSearch',label:'Search',onKeyUp:function(e){searchIcon(e.sender.$.value);}
@@ -141,7 +141,8 @@ return {
 		const color = dialog.getValueOf('font-awesome','icon-color');
 		const size = dialog.getValueOf('font-awesome','icon-size');
 		const icon = dialog.getValueOf('font-awesome', 'faicon');
-		editor.insertHtml(`[icon aria-hidden="true" class="${icon} fa-${size} icon-color-${color}"][/icon]`);
+    // The order of attributes must stay this way or the filter won't process it correctly
+		editor.insertHtml(`[icon shape="${icon}" size="${size}" pull="" color="${color}" wrapper="" /]`);
 	},
 	onCancel:function () {
 		clear();
