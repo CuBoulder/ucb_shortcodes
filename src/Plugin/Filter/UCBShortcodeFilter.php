@@ -54,13 +54,13 @@ class UCBShortcodeFilter extends FilterBase {
        */
       $icon = $matches[1][$i];
       // tag doenst have the prefix
-      if( strpos($icon, '/fa(b|s|r)/') === false){
+      if( preg_match('/fa[bsr]/', $icon) === false){
         $icon = 'fas ' . $icon;
       }
       $size = $matches[2][$i] ?? 'fa-1x';
-      $pull = '';
+      $pull = $matches[3][$i] ?? '';
       $color= $matches[4][$i] ?? 'blue';
-      $wrapper= '';
+      $wrapper= $matches[5][$i] ?? '';
       $tag = "<i aria-hidden='true' class='{$icon} {$size} icon-color-{$color}'></i>";
       $new_text = str_replace( $matches[0][$i], $tag, $new_text);
     }
