@@ -2,5 +2,5 @@
     "name": "cu-boulder/ucb_shortcodes",
     "description": "A collection of shortcode plugins for CKEditor",
     "license": "MIT",
-    "type": "drupal-module"
+    "type": "drupal-custom-module"
 }
